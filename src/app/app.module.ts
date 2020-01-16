@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Routing module that will route to your custom modules
-import {AppRoutingModule} from './shared/app-routing.module'
+import { AppRoutingModule } from './shared/app-routing.module';
 
 import { ReactiveFormsModule } from "@angular/forms";
 

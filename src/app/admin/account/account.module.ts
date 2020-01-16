@@ -5,6 +5,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     VerifyEmailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class AccountModule { }
