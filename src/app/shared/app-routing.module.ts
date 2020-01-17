@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'forgot-password', component: ForgetPasswordComponent, canActivate: [SecureInnerPagesGuard]},
-  { path: 'verify-email', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard]}
+  { path: 'verify-email', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard, AuthGuard]}
 ];
 
 @NgModule({

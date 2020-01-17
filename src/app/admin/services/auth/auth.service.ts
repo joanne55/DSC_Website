@@ -1,13 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
 import { auth, firestore } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Account } from "../../interfaces/account";
-// import { DocumentReference } from '@google-cloud/firestore';
-
-// import * as firebase from 'firebase/app';
 
 
 @Injectable({
@@ -61,7 +57,7 @@ export class AuthService {
       .then((result) => {
         this.SetUserData(result.user);
         this.SendVerificationMail();       // Send a verification email to the new user 
-        // this.afAuth.auth.signOut();     // Do not use custom SignOut() as that will route to 'sign-in' page
+        this.afAuth.auth.signOut();        // Do not use custom SignOut() as that will route to 'sign-in' page
       })
       .catch((error) => {
         window.alert(error.message)
@@ -95,17 +91,18 @@ export class AuthService {
       .auth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        window.alert('Password reset email sent, please check your inbox.');
       })
       .catch((error) => {
         window.alert(error)
       })
   }
 
-  // Returns true when user is logged in and email is verified
+  // Returns true when user is logged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    // return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null) ? true : false;
   }
 
   // Sign in with Google
@@ -113,7 +110,7 @@ export class AuthService {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
 
-  // OAuth sign-in logic. Enable Firebase sign-in providers used, in Firebase console
+  // OAuth sign-in logic
   AuthLogin(provider) {
     return this.afAuth
       .auth
